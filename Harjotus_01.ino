@@ -46,38 +46,124 @@ int count = 1; //Määritetään numero arvo laskurille
 void LediTila(){ // Määritetään ledien päälle
   switch( count ){
     case 1:
-    	LedEState = LedON; // Määritetään ledin tila
-    	Serial.println("LEDI 1 ON");
+    	// Määritetään ledin tila numerolle 1
+        LedEState = LedOFF;
+        LedDState = LedOFF;
+    	LedCState = LedON;
+    	LedDPState = LedON;
+    	LedGState = LedOFF;
+    	LedFState = LedOFF;
+    	LedAState = LedOFF;
+    	LedBState = LedON;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 1");
     	break;
   	case 2: 
-        LedDState = LedON; // Määritetään ledin tila
-    	Serial.println("LEDI 2 ON");
-        break;
+    	// Määritetään ledin tila numerolle 2
+        LedEState = LedON;
+        LedDState = LedON;
+    	LedCState = LedOFF;
+    	LedDPState = LedON;
+    	LedGState = LedON;
+    	LedFState = LedOFF;
+    	LedAState = LedON;
+    	LedBState = LedON;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 2");
+    	break;
   	case 3: 
-        LedCState = LedON; // Määritetään ledin tila
-    	Serial.println("LEDI 3 ON");
-        break;
+    	// Määritetään ledin tila numerolle 3
+        LedEState = LedOFF;
+        LedDState = LedON;
+    	LedCState = LedON;
+    	LedDPState = LedON;
+    	LedGState = LedON;
+    	LedFState = LedOFF;
+    	LedAState = LedON;
+    	LedBState = LedON;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 3");
+    	break;
    	case 4: 
-        LedDPState = LedON; // Määritetään ledin tila
-    	Serial.println("LEDI 4 ON");
-        break;
+    	// Määritetään ledin tila numerolle 4
+        LedEState = LedOFF;
+        LedDState = LedOFF;
+    	LedCState = LedON;
+    	LedDPState = LedON;
+    	LedGState = LedON;
+    	LedFState = LedON;
+    	LedAState = LedOFF;
+    	LedBState = LedON;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 4");        break;
    	case 5: 
-        LedGState = LedON; // Määritetään ledin tila
-    	Serial.println("LEDI 5 ON");
-        break;
+    	// Määritetään ledin tila numerolle 5
+        LedEState = LedOFF;
+        LedDState = LedON;
+    	LedCState = LedON;
+    	LedDPState = LedON;
+    	LedGState = LedON;
+    	LedFState = LedON;
+    	LedAState = LedON;
+    	LedBState = LedOFF;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 5");        break;
    	case 6: 
-        LedFState = LedON; // Määritetään ledin tila
-    	Serial.println("LEDI 6 ON");
-        break;
+    	// Määritetään ledin tila numerolle 6
+        LedEState = LedON;
+        LedDState = LedON;
+    	LedCState = LedON;
+    	LedDPState = LedON;
+    	LedGState = LedON;
+    	LedFState = LedON;
+    	LedAState = LedON;
+    	LedBState = LedOFF;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 6");
+    	break;
    	case 7: 
-        LedAState = LedON; // Määritetään ledin tila
-    	Serial.println("LEDI 7 ON");
-        break;
+    	// Määritetään ledin tila numerolle 7
+        LedEState = LedOFF;
+        LedDState = LedOFF;
+    	LedCState = LedON;
+    	LedDPState = LedON;
+    	LedGState = LedOFF;
+    	LedFState = LedOFF;
+    	LedAState = LedON;
+    	LedBState = LedON;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 7");
+    	break;
    	case 8: 
-        LedBState = LedON; // Määritetään ledin tila
-    	Serial.println("LEDI 8 ON");
-        break;
-    case 9: // Nollataan ledi
+    	// Määritetään ledin tila numerolle 8
+        LedEState = LedON;
+        LedDState = LedON;
+    	LedCState = LedON;
+    	LedDPState = LedON;
+    	LedGState = LedON;
+    	LedFState = LedON;
+    	LedAState = LedON;
+    	LedBState = LedON;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 8");
+    	break;
+     case 9: 
+    	// Määritetään ledin tila numerolle 9
+        LedEState = LedOFF;
+        LedDState = LedON;
+    	LedCState = LedON;
+    	LedDPState = LedON;
+    	LedGState = LedON;
+    	LedFState = LedON;
+    	LedAState = LedON;
+    	LedBState = LedON;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 9");
+    	break;
+     case 10: 
+    	// Määritetään ledin tila numerolle 0
+        LedEState = LedON;
+        LedDState = LedON;
+    	LedCState = LedON;
+    	LedDPState = LedON;
+    	LedGState = LedOFF;
+    	LedFState = LedON;
+    	LedAState = LedON;
+    	LedBState = LedON;
+    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 0");
+    	break;
+    case 11: // Sammutetaan ledit
         LedEState = LedOFF;
         LedDState = LedOFF;
     	LedCState = LedOFF;
