@@ -10,7 +10,7 @@
 #define LedOFF HIGH
 #define LedON LOW
 
-//Muuttujien arvon määritys
+// Muuttujien arvon määritys
 int LedEState = LedOFF;
 int LedDState = LedOFF;
 int LedCState = LedOFF;
@@ -41,10 +41,11 @@ void setup(){
   Serial.begin(9600);
 }
 
-int count = 1; //Määritetään numero arvo laskurille
-
-void LediTila(){ // Määritetään ledien päälle
-  switch( count ){
+int odota = 1500;
+int count = 1;
+  
+void showNum(int number){ // Määritetään ledien päälle
+  switch( number ){
     case 1:
     	// Määritetään ledin tila numerolle 1
         LedEState = LedOFF;
@@ -55,7 +56,6 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedOFF;
     	LedAState = LedOFF;
     	LedBState = LedON;
-    	Serial.println("LEDI NAYTTAA NUMEROA 1");
     	break;
   	case 2: 
     	// Määritetään ledin tila numerolle 2
@@ -67,7 +67,6 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedOFF;
     	LedAState = LedON;
     	LedBState = LedON;
-    Serial.println("LEDI NAYTTAA NUMEROA 2");
     	break;
   	case 3: 
     	// Määritetään ledin tila numerolle 3
@@ -79,7 +78,6 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedOFF;
     	LedAState = LedON;
     	LedBState = LedON;
-    	Serial.println("LEDI NAYTTAA NUMEROA 3");
     	break;
    	case 4: 
     	// Määritetään ledin tila numerolle 4
@@ -91,7 +89,7 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedON;
     	LedAState = LedOFF;
     	LedBState = LedON;
-    	Serial.println("LEDI NAYTTAA NUMEROA 4");        break;
+    	break;
    	case 5: 
     	// Määritetään ledin tila numerolle 5
         LedEState = LedOFF;
@@ -102,7 +100,7 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedON;
     	LedAState = LedON;
     	LedBState = LedOFF;
-    	Serial.println("LEDI NAYTTAA NUMEROA 5");        break;
+    	break;
    	case 6: 
     	// Määritetään ledin tila numerolle 6
         LedEState = LedON;
@@ -113,8 +111,7 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedON;
     	LedAState = LedON;
     	LedBState = LedOFF;
-    	Serial.println("LEDI NAYTTAA NUMEROA 6");
-    	break;
+      	break;
    	case 7: 
     	// Määritetään ledin tila numerolle 7
         LedEState = LedOFF;
@@ -125,7 +122,6 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedOFF;
     	LedAState = LedON;
     	LedBState = LedON;
-    	Serial.println("LEDI NAYTTAA NUMEROA 7");
     	break;
    	case 8: 
     	// Määritetään ledin tila numerolle 8
@@ -137,7 +133,6 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedON;
     	LedAState = LedON;
     	LedBState = LedON;
-    	Serial.println("LEDI NAYTTAA NUMEROA 8");
     	break;
      case 9: 
     	// Määritetään ledin tila numerolle 9
@@ -149,7 +144,6 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedON;
     	LedAState = LedON;
     	LedBState = LedON;
-    	Serial.println("LEDI NAYTTAA NUMEROA 9");
     	break;
      case 10: 
     	// Määritetään ledin tila numerolle 0
@@ -161,7 +155,6 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedON;
     	LedAState = LedON;
     	LedBState = LedON;
-    	Serial.println("LEDI NAYTTAA NUMEROA 0");
     	break;
     case 11: // Sammutetaan ledit
         LedEState = LedOFF;
@@ -172,23 +165,60 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedOFF;
     	LedAState = LedOFF;
     	LedBState = LedOFF;
-    	Serial.println("LEDIT SAMUTETAAN");
-    	count = 0;
-        break;
-
+    	break;
     }
   }
-  
+
+void naytto(int num){
+  digitalWrite(LedE, LedEState); // Kirjoittaa ledin tilan
+  digitalWrite(LedD, LedDState); // Kirjoittaa ledin tilan
+  digitalWrite(LedC, LedCState); // Kirjoittaa ledin tilan
+  digitalWrite(LedDP, LedDPState); // Kirjoittaa ledin tilan
+  digitalWrite(LedG, LedGState); // Kirjoittaa ledin tilan
+  digitalWrite(LedF, LedFState); // Kirjoittaa ledin tilan
+  digitalWrite(LedA, LedAState); // Kirjoittaa ledin tilan
+  digitalWrite(LedB, LedBState); // Kirjoittaa ledin tilan
+  switch( num ){// Numeron tulostus serialiin
+    case 1:
+      Serial.println("LEDI NAYTTAA NUMEROA 1");
+      break;
+    case 2:
+      Serial.println("LEDI NAYTTAA NUMEROA 2");
+      break;
+    case 3:
+      Serial.println("LEDI NAYTTAA NUMEROA 3");
+      break;
+    case 4:
+      Serial.println("LEDI NAYTTAA NUMEROA 4");
+      break;
+    case 5:
+      Serial.println("LEDI NAYTTAA NUMEROA 5");
+      break;
+    case 6:
+      Serial.println("LEDI NAYTTAA NUMEROA 6");
+      break;
+    case 7:
+      Serial.println("LEDI NAYTTAA NUMEROA 7");
+      break;
+    case 8:
+      Serial.println("LEDI NAYTTAA NUMEROA 8");
+      break;
+    case 9:
+      Serial.println("LEDI NAYTTAA NUMEROA 9");
+      break;
+    case 10:
+      Serial.println("LEDI NAYTTAA NUMEROA 0");
+      break;
+    case 11:
+      Serial.println("LEDI NAYTTAA NUMEROA SAMUTETAAN");
+      count = 0;// Nolataan laskuri
+      break;
+  	}
+  }
+
 void loop(){
-  LediTila();  
-  digitalWrite(LedE, LedEState); //Kirjoittaa ledin tilan
-  digitalWrite(LedD, LedDState); //Kirjoittaa ledin tilan
-  digitalWrite(LedC, LedCState); //Kirjoittaa ledin tilan
-  digitalWrite(LedDP, LedDPState); //Kirjoittaa ledin tilan
-  digitalWrite(LedG, LedGState); //Kirjoittaa ledin tilan
-  digitalWrite(LedF, LedFState); //Kirjoittaa ledin tilan
-  digitalWrite(LedA, LedAState); //Kirjoittaa ledin tilan
-  digitalWrite(LedB, LedBState); //Kirjoittaa ledin tilan
+  showNum(count); // Menee ja määrittää numeron
+  naytto(count); // Menee ja laittaa numeron päälle
+  delay(odota); // Odottaa
   count++;
-  delay(1000); // Odottaa 1000 millisekunttia
 }
