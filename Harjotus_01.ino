@@ -79,7 +79,7 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedOFF;
     	LedAState = LedON;
     	LedBState = LedON;
-    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 3");
+    	Serial.println("LEDI NAYTTAA NUMEROA 3");
     	break;
    	case 4: 
     	// Määritetään ledin tila numerolle 4
@@ -102,7 +102,7 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedON;
     	LedAState = LedON;
     	LedBState = LedOFF;
-    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 5");        break;
+    	Serial.println("LEDI NAYTTAA NUMEROA 5");        break;
    	case 6: 
     	// Määritetään ledin tila numerolle 6
         LedEState = LedON;
@@ -149,7 +149,7 @@ void LediTila(){ // Määritetään ledien päälle
     	LedFState = LedON;
     	LedAState = LedON;
     	LedBState = LedON;
-    	Serial.println("LEDI NÄYTTÄÄ NUMEROA 9");
+    	Serial.println("LEDI NAYTTAA NUMEROA 9");
     	break;
      case 10: 
     	// Määritetään ledin tila numerolle 0
