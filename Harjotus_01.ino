@@ -9,6 +9,7 @@
 #define LedB 4
 #define LedOFF HIGH
 #define LedON LOW
+#define Button 2
 
 // Muuttujien arvon määritys
 int LedEState = LedOFF;
@@ -22,6 +23,7 @@ int LedBState = LedOFF;
 
 // Otetaan käyttöön
 void setup(){
+  pinMode(Button, INPUT_PULLUP);
   pinMode(LedE, OUTPUT);
   pinMode(LedD, OUTPUT);
   pinMode(LedC, OUTPUT);
@@ -166,6 +168,16 @@ void showNum(int number){ // Määritetään ledien päälle
     	LedAState = LedOFF;
     	LedBState = LedOFF;
     	break;
+    case 11: // Määritetään ledit näytämään -
+        LedEState = LedOFF;
+        LedDState = LedOFF;
+    	LedCState = LedOFF;
+    	LedDPState = LedOFF;
+    	LedGState = LedON;
+    	LedFState = LedOFF;
+    	LedAState = LedOFF;
+    	LedBState = LedOFF;
+    	break;
     }
   }
 
@@ -206,20 +218,21 @@ void naytto(int num){
     case 9:
       Serial.println("LEDI NAYTTAA NUMEROA 9");
       break;
-    case 10:
+    case 0:
       Serial.println("LEDI NAYTTAA NUMEROA 0");
       break;
-    case 11:
+    case 10:
       Serial.println("LEDI NAYTTAA NUMEROA SAMUTETAAN");
-      // count = -1;// Nolataan laskuri
       break;
+    case 11:
+      Serial.println("LEDI NAYTTAA -");
   	}
   }
 
 int getNum(){ //Lukee säädintä
   int y = analogRead( A0 );
     if(y > 1000 ){
-        return 10;
+        return 11;
       }
   	if(y > 900 ){
         return 9;
@@ -252,9 +265,14 @@ int getNum(){ //Lukee säädintä
 }
 
 void loop(){
-  int count = getNum();// Ottaa numeron säätimeltä
-  showNum(count); // Menee ja määrittää numeron
-  naytto(count); // Menee ja laittaa numeron päälle
-  // delay(odota); // Odottaa
-  // count++;
+  if( digitalRead(Button) == LOW ){// Lukee nappulaa
+  	int count = getNum();// Ottaa numeron säätimeltä
+    showNum(count); // Menee ja määrittää numeron
+  	naytto(count); // Menee ja laittaa numeron päälle
+  }
+  if( digitalRead(Button) != LOW ){// Lukee nappulaa
+    count = 10;
+  	showNum(count); // Menee ja määrittää numeron
+  	naytto(count); // Menee ja laittaa numeron päälle
+  }
 }
