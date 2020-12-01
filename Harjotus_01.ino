@@ -42,7 +42,7 @@ void setup(){
 }
 
 int odota = 1500;
-int count = 1;
+int count = 0;
   
 void showNum(int number){ // Määritetään ledien päälle
   switch( number ){
@@ -145,7 +145,7 @@ void showNum(int number){ // Määritetään ledien päälle
     	LedAState = LedON;
     	LedBState = LedON;
     	break;
-     case 10: 
+     case 0: 
     	// Määritetään ledin tila numerolle 0
         LedEState = LedON;
         LedDState = LedON;
@@ -156,7 +156,7 @@ void showNum(int number){ // Määritetään ledien päälle
     	LedAState = LedON;
     	LedBState = LedON;
     	break;
-    case 11: // Sammutetaan ledit
+    case 10: // Sammutetaan ledit
         LedEState = LedOFF;
         LedDState = LedOFF;
     	LedCState = LedOFF;
@@ -211,14 +211,50 @@ void naytto(int num){
       break;
     case 11:
       Serial.println("LEDI NAYTTAA NUMEROA SAMUTETAAN");
-      count = 0;// Nolataan laskuri
+      // count = -1;// Nolataan laskuri
       break;
   	}
   }
 
+int getNum(){ //Lukee säädintä
+  int y = analogRead( A0 );
+    if(y > 1000 ){
+        return 10;
+      }
+  	if(y > 900 ){
+        return 9;
+      }
+  	if(y > 800 ){
+        return 8;
+      }
+	if(y > 700 ){
+        return 7;
+      }
+  	if(y > 600 ){
+        return 6;
+      }
+  	if(y > 500 ){
+        return 5;
+	  }
+	if(y > 400 ){
+        return 4;
+      }
+	if(y > 300 ){
+        return 3;
+      }
+	if(y > 200 ){
+        return 2;
+      }
+	if(y > 100 ){
+        return 1;
+      }
+	return 0;
+}
+
 void loop(){
+  int count = getNum();// Ottaa numeron säätimeltä
   showNum(count); // Menee ja määrittää numeron
   naytto(count); // Menee ja laittaa numeron päälle
-  delay(odota); // Odottaa
-  count++;
+  // delay(odota); // Odottaa
+  // count++;
 }
