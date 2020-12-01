@@ -43,8 +43,8 @@ void setup(){
   Serial.begin(9600);
 }
 
-int odota = 1500;
-int count = 0;
+int count = 0;// näytön aloitus arvo
+int nayttopois = 0;// Näytön pois laskurin aloitus arvo
   
 void showNum(int number){ // Määritetään ledien päälle
   switch( number ){
@@ -264,15 +264,30 @@ int getNum(){ //Lukee säädintä
 	return 0;
 }
 
+
+bool buttonPressed(){// Tarkistaa onko napulaa painettu
+  if( digitalRead(Button) != LOW ){// Lukee nappulaa	
+	return false;// Antaa arvon napulalle
+  }
+return true;// Antaa arvon napulalle
+}
+
 void loop(){
-  if( digitalRead(Button) == LOW ){// Lukee nappulaa
+  if(buttonPressed() == true){// Tekee napulan arvon mukaan toiminnon
   	int count = getNum();// Ottaa numeron säätimeltä
     showNum(count); // Menee ja määrittää numeron
-  	naytto(count); // Menee ja laittaa numeron päälle
+    naytto(count); // Menee ja laittaa numeron päällä
+    nayttopois = 0;//Nollaa naytopois arvon
   }
-  if( digitalRead(Button) != LOW ){// Lukee nappulaa
-    count = 10;// Määritellään numero
-  	showNum(count); // Menee ja määrittää numeron
-  	naytto(count); // Menee ja laittaa numeron päälle
+  if(buttonPressed() == false){// Tekee napulan arvon mukaan toiminnon
+    nayttopois++;// Lisää 1 naytopois arvoon
+  }
+  if(nayttopois == 2){
+    count = 10;// Määrittää numeron
+    showNum(count); // Menee ja määrittää numeron
+    naytto(count); // Menee ja laittaa numeron päälle
+  }
+  if(nayttopois > 10){// Jos naytopois arvo kasvaa pistää luuppiin arvon
+    nayttopois = 9;// Määrittää arvon
   }
 }
