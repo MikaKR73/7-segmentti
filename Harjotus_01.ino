@@ -230,7 +230,7 @@ void naytto(int num){
   }
 
 int getNum(){ //Lukee säädintä
-  int y = analogRead( A0 );
+  int y = analogRead( A0 );// Lukee säätimen arvon
     if(y > 1000 ){
         return 11;
       }
@@ -271,7 +271,7 @@ void loop(){
   	naytto(count); // Menee ja laittaa numeron päälle
   }
   if( digitalRead(Button) != LOW ){// Lukee nappulaa
-    count = 10;
+    count = 10;// Määritellään numero
   	showNum(count); // Menee ja määrittää numeron
   	naytto(count); // Menee ja laittaa numeron päälle
   }
